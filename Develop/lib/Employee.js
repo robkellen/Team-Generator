@@ -16,6 +16,8 @@ class Employee {
   }
 }
 
-// const employee = new Employee("Rob", "Manager", 1, 1);
+const employee = new Employee("Rob", "Manager", 1, 1);
 
 employee.printInfo();
+
+module.exports = Employee
