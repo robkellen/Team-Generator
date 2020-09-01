@@ -2,22 +2,14 @@
 const Employee = require("./Employee");
 
 class Engineer extends Employee {
-  constructor(name, "Engineer", id, officeNumber, email, gitHub) {
-    super(name, id, officeNumber);
-    this.email = email;
+  constructor(name, id, email, officeNumber, gitHub) {
+    super(name, id, email, "Engineer");
+    this.officeNumber = officeNumber;
     this.gitHub = gitHub;    
+    
   }
-  printInfo() {
-    console.log(`Name: ${this.name}`);
-    console.log(`Role: ${this.role}`);
-    console.log(`ID: ${this.id}`);
-    console.log(`Office Number: ${this.officeNumber}`);
-    console.log(`Email: ${this.email}`);
-    console.log(`GitHub: ${this.gitHub}`);
-
-  }
+  
 }
 
-// const engineer = new Engineer("Rob", 2, 2, "email@email.com", "robkellen");
 
 engineer.printInfo();

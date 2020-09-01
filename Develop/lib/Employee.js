@@ -1,31 +1,27 @@
 // TODO: Write code to define and export the Employee class
 class Employee {
   // Just like constructor functions, classes can accept arguments
-  constructor(name, id, email, role) {
+  constructor(name, id, email, role="Employee") {
     this.name = name;
     this.id = id;
     this.email = email;
-    role = "Employee";
+    this.role = role;
   }
-  getName(){
+  getName() {
     console.log(this.name);
+    return this. name;
   }
-  getID(){
+  getId() {
     console.log(this.id);
+    return this.id;
   }
-  getEmail(){
+  getEmail() {
     console.log(this.email);
+    return this.email;
   }
-  getRole(){
-    console.log(this.role);
+  getRole() {
+    return this.role;
   }
 }
 
-// const employee = new Employee;
-
-employee.getName();
-employee.getID();
-employee.getEmail();
-employee.getRole();
-
-module.exports = Employee
+module.exports = Employee;
