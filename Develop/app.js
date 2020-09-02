@@ -18,7 +18,7 @@ const render = require("./lib/htmlRenderer");
 let managerList = [];
 let engineerList = [];
 let internList = [];
-let employeeList = [];
+let teamList = [];
 
 // render([
 //   new Manager();
@@ -28,8 +28,9 @@ let employeeList = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-inquirer
-  .prompt([
+managerPrompt();
+function managerPrompt() {
+  inquirer.prompt([
     {
       message: "What is your manager's name?",
       name: "name",
@@ -46,75 +47,84 @@ inquirer
       message: "What is your manager's email?",
       name: "email",
     },
-  ])
-  .then(function (manager) {
+  ]).then(function(manager){
     console.log(manager);
-    promptNewEmp();
-  });
+    managerList.push(manager);
+    teamList.push(manager);
+    console.log(managerList);
+    console.log(teamList);
+    // promptNewEmp();
+  })
+};
 
-function promptNewEmp(engOrInt) {
-  inquirer.prompt([
-    {
-      type: "list",
-      message: "What type of employee would you like to add to the team?",
-      name: "engOrInt",
-      choices: ["Engineer", "Intern", "Quit"],
-    },
-  ]);
-  if (engOrInt === "Engineer") {
-    engPrompt();
-  } else if (engOrInt === "Intern") {
-    intPrompt();
-  } else {
-    console.log("quit");
-  }
-}
+// }
+// managerPrompt();
 
-function engPrompt() {
-  inquirer.prompt([
-    {
-      message: "What is your engineer's name?",
-      name: "name",
-    },
-    {
-      message: "What is your engineer's ID?",
-      name: "id",
-    },
-    {
-      message: "What is your engineer's email?",
-      name: "email",
-    },
-    {
-      message: "What is your engineer's GitHub?",
-      name: "gitHub",
-    },
-  ]);
-  console.log(engineer);
-  promptNewEmp();
-}
+// function promptNewEmp(engOrInt) {
+//   inquirer.prompt([
+//     {
+//       type: "list",
+//       message: "What type of employee would you like to add to the team?",
+//       name: "engOrInt",
+//       choices: ["Engineer", "Intern", "Quit"],
+//     },
+//   ]);
+//   if (engOrInt === "Engineer") {
+//     engPrompt();
+//   } else if (engOrInt === "Intern") {
+//     intPrompt();
+//   } else {
+//     console.log("quit");
+//   }
+// }
 
-function intPrompt() {
-  inquirer.prompt([
-    {
-      message: "What is your intern's name?",
-      name: "name",
-    },
-    {
-      message: "What is your intern's ID?",
-      name: "id",
-    },
-    {
-      message: "What is your intern's email?",
-      name: "email",
-    },
-    {
-      message: "What is your intern's school?",
-      name: "school",
-    },
-  ]);
-  console.log(intern);
-  promptNewEmp();
-}
+// function engPrompt() {
+//   inquirer.prompt([
+//     {
+//       message: "What is your engineer's name?",
+//       name: "name",
+//     },
+//     {
+//       message: "What is your engineer's ID?",
+//       name: "id",
+//     },
+//     {
+//       message: "What is your engineer's email?",
+//       name: "email",
+//     },
+//     {
+//       message: "What is your engineer's GitHub?",
+//       name: "gitHub",
+//     },
+//   ]);
+//   console.log(engineer);
+//   engineerList.push(engineer)
+// }
+
+// function intPrompt() {
+//   inquirer.prompt([
+//     {
+//       message: "What is your intern's name?",
+//       name: "name",
+//     },
+//     {
+//       message: "What is your intern's ID?",
+//       name: "id",
+//     },
+//     {
+//       message: "What is your intern's email?",
+//       name: "email",
+//     },
+//     {
+//       message: "What is your intern's school?",
+//       name: "school",
+//     },
+//   ]);
+//   console.log(intern);
+// }
+
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
