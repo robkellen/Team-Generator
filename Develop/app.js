@@ -34,12 +34,12 @@ function managerPrompt() {
         name: "id",
       },
       {
-        message: "What is your manager's office number?",
-        name: "officeNumber",
-      },
-      {
         message: "What is your manager's email?",
         name: "email",
+      },
+      {
+        message: "What is your manager's office number?",
+        name: "officeNumber",
       },
     ])
     .then(function (manager) {
@@ -49,8 +49,8 @@ function managerPrompt() {
         new Manager(
           manager.name,
           manager.id,
-          manager.officeNumber,
-          manager.email
+          manager.email,
+          manager.officeNumber
         )
       );
       promptNewEmp();
