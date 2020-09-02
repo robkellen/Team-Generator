@@ -51,14 +51,14 @@ function managerPrompt() {
     ])
     .then(function (manager) {
       console.log(manager);
+      //adding new manager to list of managers
       managerList.push(manager);
+      //adding new manager to list of entire team
       teamList.push(manager);
-      // console.log(managerList);
-      // console.log(teamList);
       promptNewEmp();
     });
 }
-
+//prompts to create new engineers or interns
 function promptNewEmp() {
   inquirer
     .prompt([
@@ -70,16 +70,19 @@ function promptNewEmp() {
       },
     ])
     .then(function ({ engOrInt }) {
+      //if user chooses to add ENG then invoke add engineer function
       if (engOrInt === "Engineer") {
         engPrompt();
-      } else if (engOrInt === "Intern") {
+      }
+      //if user chooses to add intern then invoke add intern function 
+      else if (engOrInt === "Intern") {
         intPrompt();
       } else {
         console.log("quit");
       }
     });
 }
-
+//add ENG function
 function engPrompt() {
   inquirer
     .prompt([
@@ -102,34 +105,40 @@ function engPrompt() {
     ])
     .then(function (engineer) {
       console.log(engineer);
+      //adding new engineer to list of engineer employees
       engineerList.push(engineer);
-      console.log(engineerList);
+      //adding new engineer to list of entire team
       teamList.push(engineer);
-      console.log(teamList);
     });
 }
-
-// function intPrompt() {
-//   inquirer.prompt([
-//     {
-//       message: "What is your intern's name?",
-//       name: "name",
-//     },
-//     {
-//       message: "What is your intern's ID?",
-//       name: "id",
-//     },
-//     {
-//       message: "What is your intern's email?",
-//       name: "email",
-//     },
-//     {
-//       message: "What is your intern's school?",
-//       name: "school",
-//     },
-//   ]);
-//   console.log(intern);
-// }
+//add intern function
+function intPrompt() {
+  inquirer.prompt([
+    {
+      message: "What is your intern's name?",
+      name: "name",
+    },
+    {
+      message: "What is your intern's ID?",
+      name: "id",
+    },
+    {
+      message: "What is your intern's email?",
+      name: "email",
+    },
+    {
+      message: "What is your intern's school?",
+      name: "school",
+    },
+  ]).then(function(intern){
+    console.log(intern);
+    //add new intern to list of all interns
+    internList.push(intern);
+    //add new intern to list of all team members
+    teamList.push(intern);
+  })
+  
+}
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
