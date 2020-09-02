@@ -44,18 +44,39 @@ inquirer
   ])
   .then(function (manager) {
     console.log(manager);
-    inquirer.prompt([
-      {
-        type: "list",
-        message: "What type of employee would you like to add to the team?",
-        name: "engOrInt",
-        choices: ["Engineer", "Intern", "Quit"],
-      },
-    ])
-    .then(function ({ engOrInt }){
-      console.log(engOrInt);
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          message: "What type of employee would you like to add to the team?",
+          name: "engOrInt",
+          choices: ["Engineer", "Intern", "Quit"],
+        },
+      ])
+      .then(function ({ engOrInt }) {
+        if (engOrInt === "Engineer") {
+          inquirer.prompt([
+            {
+              message: "What is your engineer's name?",
+              name: "name",
+            },
+            {
+              message: "What is your engineer's ID?",
+              name: "id",
+            },
+            {
+              message: "What is your engineer's email?",
+              name: "email",
+            },
+            {
+              message: "What is your engineer's GitHub?",
+              name: "gitHub",
+            },
+          ]);
+        }
 
-    })
+        console.log(engOrInt);
+      });
   });
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
