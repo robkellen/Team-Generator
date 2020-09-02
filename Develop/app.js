@@ -14,17 +14,10 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
 
-let managerList = [];
-let engineerList = [];
-let internList = [];
-let teamList = [];
-
-// render([
-//   new Manager();
-//   new Engineer();
-//   new Intern();
-// ])
+//array where all employees will be added
+const teamList = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -50,11 +43,16 @@ function managerPrompt() {
       },
     ])
     .then(function (manager) {
-      console.log(manager);
-      //adding new manager to list of managers
-      managerList.push(manager);
+      // console.log(manager);
       //adding new manager to list of entire team
-      teamList.push(manager);
+      teamList.push(
+        new Manager(
+          manager.name,
+          manager.id,
+          manager.officeNumber,
+          manager.email
+        )
+      );
       promptNewEmp();
     });
 }
@@ -74,11 +72,16 @@ function promptNewEmp() {
       if (engOrInt === "Engineer") {
         engPrompt();
       }
-      //if user chooses to add intern then invoke add intern function 
+      //if user chooses to add intern then invoke add intern function
       else if (engOrInt === "Intern") {
         intPrompt();
-      } else {
-        console.log("quit");
+      }
+      // console.log("quit");
+      else {
+        fs.writeFile(outputPath, render(teamList), (err) => {
+          if (err) throw err;
+          console.log("File has been written!");
+        });
       }
     });
 }
@@ -104,44 +107,49 @@ function engPrompt() {
       },
     ])
     .then(function (engineer) {
-      console.log(engineer);
-      //adding new engineer to list of engineer employees
-      engineerList.push(engineer);
-      //adding new engineer to list of entire team
-      teamList.push(engineer);
+      // console.log(engineer);
+      //adding new engineer to array of employees
+      teamList.push(
+        new Engineer(
+          engineer.name,
+          engineer.id,
+          engineer.email,
+          engineer.gitHub
+        )
+      );
       promptNewEmp();
     });
 }
 //add intern function
 function intPrompt() {
-  inquirer.prompt([
-    {
-      message: "What is your intern's name?",
-      name: "name",
-    },
-    {
-      message: "What is your intern's ID?",
-      name: "id",
-    },
-    {
-      message: "What is your intern's email?",
-      name: "email",
-    },
-    {
-      message: "What is your intern's school?",
-      name: "school",
-    },
-  ]).then(function(intern){
-    console.log(intern);
-    //add new intern to list of all interns
-    internList.push(intern);
-    //add new intern to list of all team members
-    teamList.push(intern);
-    promptNewEmp();
-  })
-  
+  inquirer
+    .prompt([
+      {
+        message: "What is your intern's name?",
+        name: "name",
+      },
+      {
+        message: "What is your intern's ID?",
+        name: "id",
+      },
+      {
+        message: "What is your intern's email?",
+        name: "email",
+      },
+      {
+        message: "What is your intern's school?",
+        name: "school",
+      },
+    ])
+    .then(function (intern) {
+      // console.log(intern);
+      //add new intern to array of all team members
+      teamList.push(
+        new Intern(intern.name, intern.id, intern.email, intern.school)
+      );
+      promptNewEmp();
+    });
 }
-
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
