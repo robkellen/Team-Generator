@@ -73,6 +73,27 @@ inquirer
               name: "gitHub",
             },
           ]);
+        } else if (engOrInt === "Intern") {
+          inquirer.prompt([
+            {
+              message: "What is your intern's name?",
+              name: "name",
+            },
+            {
+              message: "What is your intern's ID?",
+              name: "id",
+            },
+            {
+              message: "What is your intern's email?",
+              name: "email",
+            },
+            {
+              message: "What is your intern's school?",
+              name: "school",
+            },
+          ]);
+        } else {
+          console.log("quit");
         }
 
         console.log(engOrInt);
