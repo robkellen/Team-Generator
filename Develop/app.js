@@ -30,76 +30,84 @@ let teamList = [];
 // and to create objects for each team member (using the correct classes as blueprints!)
 managerPrompt();
 function managerPrompt() {
-  inquirer.prompt([
-    {
-      message: "What is your manager's name?",
-      name: "name",
-    },
-    {
-      message: "What is your manager's id?",
-      name: "id",
-    },
-    {
-      message: "What is your manager's office number?",
-      name: "officeNumber",
-    },
-    {
-      message: "What is your manager's email?",
-      name: "email",
-    },
-  ]).then(function(manager){
-    console.log(manager);
-    managerList.push(manager);
-    teamList.push(manager);
-    console.log(managerList);
-    console.log(teamList);
-    // promptNewEmp();
-  })
-};
+  inquirer
+    .prompt([
+      {
+        message: "What is your manager's name?",
+        name: "name",
+      },
+      {
+        message: "What is your manager's id?",
+        name: "id",
+      },
+      {
+        message: "What is your manager's office number?",
+        name: "officeNumber",
+      },
+      {
+        message: "What is your manager's email?",
+        name: "email",
+      },
+    ])
+    .then(function (manager) {
+      console.log(manager);
+      managerList.push(manager);
+      teamList.push(manager);
+      // console.log(managerList);
+      // console.log(teamList);
+      promptNewEmp();
+    });
+}
 
-// }
-// managerPrompt();
+function promptNewEmp() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What type of employee would you like to add to the team?",
+        name: "engOrInt",
+        choices: ["Engineer", "Intern", "Quit"],
+      },
+    ])
+    .then(function ({ engOrInt }) {
+      if (engOrInt === "Engineer") {
+        engPrompt();
+      } else if (engOrInt === "Intern") {
+        intPrompt();
+      } else {
+        console.log("quit");
+      }
+    });
+}
 
-// function promptNewEmp(engOrInt) {
-//   inquirer.prompt([
-//     {
-//       type: "list",
-//       message: "What type of employee would you like to add to the team?",
-//       name: "engOrInt",
-//       choices: ["Engineer", "Intern", "Quit"],
-//     },
-//   ]);
-//   if (engOrInt === "Engineer") {
-//     engPrompt();
-//   } else if (engOrInt === "Intern") {
-//     intPrompt();
-//   } else {
-//     console.log("quit");
-//   }
-// }
-
-// function engPrompt() {
-//   inquirer.prompt([
-//     {
-//       message: "What is your engineer's name?",
-//       name: "name",
-//     },
-//     {
-//       message: "What is your engineer's ID?",
-//       name: "id",
-//     },
-//     {
-//       message: "What is your engineer's email?",
-//       name: "email",
-//     },
-//     {
-//       message: "What is your engineer's GitHub?",
-//       name: "gitHub",
-//     },
-//   ]);
-//   console.log(engineer);
-//   engineerList.push(engineer)
-// }
+function engPrompt() {
+  inquirer
+    .prompt([
+      {
+        message: "What is your engineer's name?",
+        name: "name",
+      },
+      {
+        message: "What is your engineer's ID?",
+        name: "id",
+      },
+      {
+        message: "What is your engineer's email?",
+        name: "email",
+      },
+      {
+        message: "What is your engineer's GitHub?",
+        name: "gitHub",
+      },
+    ])
+    .then(function (engineer) {
+      console.log(engineer);
+      engineerList.push(engineer);
+      console.log(engineerList);
+      teamList.push(engineer);
+      console.log(teamList);
+    });
+}
 
 // function intPrompt() {
 //   inquirer.prompt([
@@ -122,9 +130,6 @@ function managerPrompt() {
 //   ]);
 //   console.log(intern);
 // }
-
-
-
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
