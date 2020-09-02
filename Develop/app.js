@@ -109,6 +109,7 @@ function engPrompt() {
       engineerList.push(engineer);
       //adding new engineer to list of entire team
       teamList.push(engineer);
+      promptNewEmp();
     });
 }
 //add intern function
@@ -136,9 +137,11 @@ function intPrompt() {
     internList.push(intern);
     //add new intern to list of all team members
     teamList.push(intern);
+    promptNewEmp();
   })
   
 }
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
