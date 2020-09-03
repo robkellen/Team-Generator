@@ -16,7 +16,7 @@
 
 This app allows a user to compile a list of members that are a part of their software engineering team, and display their contact info to an HTML document for quick reference.
 
-![Alt Text](/TeamGenerator.gif)
+![Example GIF](/Develop/TeamGenerator.gif)
 
 ## Installation
 
