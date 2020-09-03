@@ -16,6 +16,8 @@
 
 This app allows a user to compile a list of members that are a part of their software engineering team, and display their contact info to an HTML document for quick reference.
 
+![Alt Text](/TeamGenerator.gif)
+
 ## Installation
 
 This app requires the use of the Inquirer package. To install Inquirer open an integrated terminal window and run the command: `npm i inquirer`.
